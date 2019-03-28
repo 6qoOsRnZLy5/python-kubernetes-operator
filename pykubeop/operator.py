@@ -37,10 +37,7 @@ class KubernetesOperator(object):
         pass
 
     def setup_apis(self):
-        if self.args.external:
-            kubernetes.config.load_kube_config()
-        else:
-            kubernetes.config.load_incluster_config()
+        kubernetes.config.load_incluster_config()
         self.api_client = kubernetes.client.api_client.ApiClient(
             configuration=kubernetes.client.Configuration()
         )
