@@ -1,0 +1,7 @@
+apiVersion: "api.service.local/v1"
+kind: TestingTest
+metadata:
+  name: talker
+  namespace: myproject
+spec:
+  bla: true
