@@ -4,7 +4,7 @@ from kubernetes import client, config, watch
 import os
 import time
 
-DOMAIN = "tests.api.service.local"
+DOMAIN = "api.service.local"
 
 
 def review_guitar(crds, obj):
