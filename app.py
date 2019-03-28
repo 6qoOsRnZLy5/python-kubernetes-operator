@@ -4,8 +4,8 @@ from kubernetes import client, config, watch
 import requests
 
 DOMAIN = "api.service.local"
-HOOK_TARGET = os.getenv('WEBHOOK_TARGET', default_value)
-HOOK_SECRET = os.getenv('WEBHOOK_SECRET', default_value)
+HOOK_TARGET = os.getenv('WEBHOOK_TARGET', 'http://localhost:8080/api/')
+HOOK_SECRET = os.getenv('WEBHOOK_SECRET', 'lksdafhlkdjlkjkadsfjkjklj')
 
 
 def review_item(crds, obj):
