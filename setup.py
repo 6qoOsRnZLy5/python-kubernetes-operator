@@ -1,16 +1,13 @@
 from setuptools import setup
 
-setup(name="python-kubernetes-operator",
-      version="0.1.1",
-      description="Simple Framework for Making Kubernetes Operators",
-      url="https://github.com/ClearScore/python-kubernetes-operator",
-      author="David Dyball",
-      author_email="david.dyball@clearscore.com",
-      license="private",
-      packages=["pykubeop"],
+setup(name="oc-oper",
+      version="0.0.1",
+      description="none",
+      url="none",
+      author="My Name",
+      author_email="none@local.host@local.host",
+      license="none",
       install_requires=[
           "kubernetes"
       ],
-      zip_safe=True,
-      test_suite="nose.collector",
-      tests_require=["nose", "mock"])
+      zip_safe=True)

@@ -1,13 +1,11 @@
 import json
-import yaml
-from kubernetes import client, config, watch
 import os
-import time
+from kubernetes import client, config, watch
 
 DOMAIN = "api.service.local"
 
 
-def review_guitar(crds, obj):
+def review_item(crds, obj):
     metadata = obj.get("metadata")
     if not metadata:
         print("No metadata in object, skipping: %s" % json.dumps(obj, indent=1))
@@ -15,13 +13,6 @@ def review_guitar(crds, obj):
     name = metadata.get("name")
     namespace = metadata.get("namespace")
     obj["spec"]["review"] = True
-    brand = obj["spec"]["brand"]
-    if brand in goodbrands:
-        obj["spec"]["comment"] = "this is a great instrument"
-    elif brand in badbrands:
-        obj["spec"]["comment"] = "this is shit"
-    else:
-        obj["spec"]["comment"] = "nobody knows this brand"
 
     print("Updating: %s" % name)
     crds.replace_namespaced_custom_object(DOMAIN, "v1", namespace, "tests", name, obj)
@@ -37,10 +28,9 @@ if __name__ == "__main__":
     print(current_crds)
     crds = client.CustomObjectsApi(api_client)
 
-    print("Waiting for Guitars to come up...")
+    print("Waiting for Items...")
     resource_version = ''
     while True:
-        time.sleep(5) 
         stream = watch.Watch().stream(crds.list_cluster_custom_object, DOMAIN, "v1", "tests", resource_version=resource_version)
         for event in stream:
             obj = event["object"]
@@ -55,4 +45,4 @@ if __name__ == "__main__":
             done = spec.get("review", False)
             if done:
                 continue
-            review_guitar(crds, obj)
+            review_item(crds, obj)
