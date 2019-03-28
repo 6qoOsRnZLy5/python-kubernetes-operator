@@ -18,8 +18,6 @@ class MyCustomResource(CRDBase):
         print(self.args.my_argument)
 
 
-class MyOperator(KubernetesOperator):
-
 
 if __name__ == '__main__':
-    MyOperator(MyCustomResource).run()
+    KubernetesOperator(MyCustomResource).run()
