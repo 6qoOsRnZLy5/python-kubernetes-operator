@@ -7,21 +7,15 @@ class MyCustomResource(CRDBase):
     SINGULAR = os.environ["cfg_singular"]
     PLURAL = os.environ["cfg_plural"]
     KIND = os.environ["cfg_kind"]
-    //GROUP = 'example.clearscore.io'
-    //VERSION = 'v1alpha1'
-    //SINGULAR = `testobject`
-    //PLURAL = `testobjects`
-    //KIND = `TestObject`
 
     def ensure_created(self):
-        // Do some custom logic for ADDED events here
         print(self.args.my_argument)
 
     def ensure_modified(self):
-        // Do some custom logic for MODIFIED events here
+        print(self.args.my_argument)
 
     def ensure_deleted(self):
-        // Do some custom logic for DELETE events here
+        print(self.args.my_argument)
 
 
 class MyOperator(KubernetesOperator):
