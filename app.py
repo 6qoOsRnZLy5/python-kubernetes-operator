@@ -19,12 +19,6 @@ class MyCustomResource(CRDBase):
 
 
 class MyOperator(KubernetesOperator):
-    def add_arguments(self, parser):
-        parser.add_argument(
-            '--my-argument',
-            type='str',
-            help='My useful arg'
-        )
 
 
 if __name__ == '__main__':
