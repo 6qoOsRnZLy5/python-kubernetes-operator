@@ -34,7 +34,7 @@ if __name__ == "__main__":
     api_client = client.api_client.ApiClient(configuration=configuration)
     v1 = client.ApiextensionsV1beta1Api(api_client)
     current_crds = [x['spec']['names']['kind'].lower() for x in v1.list_custom_resource_definition().to_dict()['items']]
-    if 'test' not in current_crds:
+    if 'tests' not in current_crds:
         print("no test obj found!")
         time.sleep(5) 
     crds = client.CustomObjectsApi(api_client)
