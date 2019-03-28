@@ -1,8 +1,11 @@
 import json
 import os
 from kubernetes import client, config, watch
+import requests
 
 DOMAIN = "api.service.local"
+HOOK_TARGET = os.getenv('WEBHOOK_TARGET', default_value)
+HOOK_SECRET = os.getenv('WEBHOOK_SECRET', default_value)
 
 
 def review_item(crds, obj):
@@ -14,7 +17,7 @@ def review_item(crds, obj):
     namespace = metadata.get("namespace")
     obj["spec"]["review"] = True
 
-    print("Found unreview item: %s" % name)
+    print("Found unreview item: %s" % obj)
     crds.replace_namespaced_custom_object(DOMAIN, "v1", namespace, "tests", name, obj)
 
 

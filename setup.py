@@ -8,6 +8,7 @@ setup(name="oc-oper",
       author_email="none@local.host@local.host",
       license="none",
       install_requires=[
-          "kubernetes"
+          "kubernetes",
+          "requests"
       ],
       zip_safe=True)
