@@ -35,15 +35,13 @@ if __name__ == "__main__":
     v1 = client.ApiextensionsV1beta1Api(api_client)
     current_crds = [x['spec']['names']['kind'].lower() for x in v1.list_custom_resource_definition().to_dict()['items']]
     print(current_crds)
-    if 'testingtest' not in current_crds:
-        print("no test obj found!")
-        time.sleep(5) 
     crds = client.CustomObjectsApi(api_client)
 
     print("Waiting for Guitars to come up...")
     resource_version = ''
     while True:
-        stream = watch.Watch().stream(crds.list_cluster_custom_object, DOMAIN, "v1", "testingtest", resource_version=resource_version)
+        time.sleep(5) 
+        stream = watch.Watch().stream(crds.list_cluster_custom_object, DOMAIN, "v1", "tests", resource_version=resource_version)
         for event in stream:
             obj = event["object"]
             operation = event['type']
