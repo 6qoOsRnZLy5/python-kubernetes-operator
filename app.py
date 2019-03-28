@@ -14,7 +14,7 @@ def review_item(crds, obj):
     namespace = metadata.get("namespace")
     obj["spec"]["review"] = True
 
-    print("Updating: %s" % name)
+    print("Found unreview item: %s" % name)
     crds.replace_namespaced_custom_object(DOMAIN, "v1", namespace, "tests", name, obj)
 
 
@@ -39,9 +39,11 @@ if __name__ == "__main__":
             if not spec:
                 continue
             metadata = obj.get("metadata")
+            generation=metadata['generation']
+            namespace=metadata['namespace']
             resource_version = metadata['resourceVersion']
             name = metadata['name']
-            print("Handling %s on %s" % (operation, name))
+            print("Handling %s event on %s generation %s in namespace %s" % (operation, name, generation, namespace))
             done = spec.get("review", False)
             if done:
                 continue
