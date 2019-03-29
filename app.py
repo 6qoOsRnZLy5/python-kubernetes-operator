@@ -18,6 +18,9 @@ def review_item(crds, obj):
     obj["spec"]["review"] = True
 
     print("Found unreview item: %s" % obj)
+    ###r = requests.post('https://httpbin.org/post', data = {'key':'value'})
+    ### headers = {'X_API_KEY': ''}
+    ### if r.status_code == requests.codes.ok
     crds.replace_namespaced_custom_object(DOMAIN, "v1", namespace, "tests", name, obj)
 
 
